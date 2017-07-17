@@ -17,12 +17,12 @@
 function Connect-HAExchange2013 {
     [CmdletBinding()]
     param (
-		[Parameter(Mandatory = $true)]
-		[string]$ComputerName,
+	[Parameter(Mandatory = $true)]
+	[string]$ComputerName,
         [Parameter()]
         [string[]]$CommandName,
-		[Parameter()]
-		[pscredential]$Credential
+	[Parameter()]
+	[pscredential]$Credential
 	)
 	BEGIN { }
 	
