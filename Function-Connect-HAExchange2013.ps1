@@ -35,27 +35,27 @@ function Connect-HAExchange2013 {
             Write-Verbose "A credential was not provided. Attempting connection using the current user."
         } # if/else credential
         try {
-		    $ExConnectParams += @{
-			    'ConfigurationName' = 'Microsoft.Exchange'
-			    'ConnectionURI' = ("http://$ComputerName/powershell")
-			    'Name' = 'Exchange 2013'
-			    'WarningAction' = 'SilentlyContinue'
-                'ErrorAction' = 'Stop'
-		    }
-            Write-Verbose "creating the session to $ComputerName"
-		    $MXSession = New-PSSession @ExConnectParams
-            $mximport_params = @{
-                'Session' = $MXSession
-                'AllowClobber' = $true
-                'DisableNameChecking' = $true
-                'WarningAction' = 'SilentlyContinue'
-                'ErrorAction' = 'Stop'
-            }
-            if ($PSBoundParameters.ContainsKey('CommandName')) {
-                $mximport_params += @{'CommandName' = $CommandName}
-            } # if CommandName
-            Write-Verbose "Importing the session locally"
-		    Import-PSSession @mximport_params | Out-Null
+		$ExConnectParams += @{
+			'ConfigurationName' = 'Microsoft.Exchange'
+			'ConnectionURI' = ("http://$ComputerName/powershell")
+			'Name' = 'Exchange 2013'
+			'WarningAction' = 'SilentlyContinue'
+                	'ErrorAction' = 'Stop'
+		}
+		Write-Verbose "creating the session to $ComputerName"
+		$MXSession = New-PSSession @ExConnectParams
+            	$mximport_params = @{
+                	'Session' = $MXSession
+                	'AllowClobber' = $true
+                	'DisableNameChecking' = $true
+                	'WarningAction' = 'SilentlyContinue'
+                	'ErrorAction' = 'Stop'
+            	}
+            	if ($PSBoundParameters.ContainsKey('CommandName')) {
+                	$mximport_params += @{'CommandName' = $CommandName}
+            	} # if CommandName
+            	Write-Verbose "Importing the session locally"
+		Import-PSSession @mximport_params | Out-Null
         } catch {
             Write-Warning "[ERROR]: An error occurred while connecting to the exchange server: $ComputerName"
             Write-Warning "[ERROR]: $($_.Exception.Message)"
