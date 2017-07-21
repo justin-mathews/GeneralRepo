@@ -1,9 +1,30 @@
-﻿function New-BlockedSite {
+<#
+    .SYNOPSIS
+    Creates a new DNS record on the DNS server provided to block access to the site provided.
+
+    .DESCRIPTION
+    This function came about as several remote locations wanted to block sites that were not safe for work.
+    You can easily do this by adding a primary zone forwarder to the DNS Server. This function is simply here
+    to help expedite that process and allow you to add several sites to several servers all at the same time.
+
+    .PARAMETER DomainController
+    Provide the name of the DNS server you would like to add the record to. This supports multiple servers.
+
+    .PARAMETER Site
+    Provide the name of the site you want to block. Ex: "pornhub.com"
+
+    .EXAMPLE
+    New-BlockedSite -DomainController "MyDC1" -Site "pornhub.com"
+    
+    .EXAMPLE
+    New-BlockedSite -DomainController "NADC1","EUDC1","ASDC1" -Site "pornhub.com","killmyself.com","bombsarefun.com"
+#>
+function New-BlockedSite {
     [CmdletBinding()]
     param (
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string[]]$DomainController,
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string[]]$Site
     )
     BEGIN {} # Begin
