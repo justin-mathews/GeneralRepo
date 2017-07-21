@@ -1,4 +1,4 @@
-﻿function New-HABlockedSite {
+﻿function New-BlockedSite {
     [CmdletBinding()]
     param (
         [Parameter()]
