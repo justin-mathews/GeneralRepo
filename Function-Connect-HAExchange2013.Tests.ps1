@@ -6,7 +6,7 @@ $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 Get-Module GlobalUserAccounts-Pester | Remove-Module -Force
 Import-Module $here\GlobalUserAccounts-Pester.psm1 -Force
 
-Describe "Connect-HAExchange Unit Tests" -Tags 'Unit' {
+Describe "Connect-Exchange Unit Tests" -Tags 'Unit' {
     InModuleScope GlobalUSerAccounts-Pester {
         Context 'Setup' {
             # Remove any PSSessions prior to testing
